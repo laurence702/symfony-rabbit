@@ -8,14 +8,16 @@
         "ext-amqp": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/doctrine-bundle": "^2.10",
+        "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.15",
         "symfony/amqp-messenger": "^6.3",
         "symfony/console": "^6.3",
+        "symfony/doctrine-messenger": "6.3.*",
         "symfony/dotenv": "^6.3",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "^6.3",
+        "symfony/mailer": "6.3.*",
         "symfony/messenger": "^6.3",
         "symfony/runtime": "^6.3",
         "symfony/validator": "^6.3",
@@ -76,4 +78,4 @@
             "require": "6.3.*"
         }
     }
-} 
+}
