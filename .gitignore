@@ -12,7 +12,6 @@
 .env.test
 .idea/
 .vscode/
-README.md
 erl_crash.dump
 docker-compose.override.yml
 compose.override.yaml
