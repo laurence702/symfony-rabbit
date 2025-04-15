@@ -8,10 +8,14 @@
 /var/cache/
 /var/log/
 .env
+.env.dev
+.env.test
 .idea/
 .vscode/
 README.md
 erl_crash.dump
+docker-compose.override.yml
+compose.override.yaml
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -27,7 +31,20 @@ erl_crash.dump
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ### 
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> symfony/mailer ###
+/config/secrets/mailer.yaml
+###< symfony/mailer ###
+
+# Docker
+docker-compose.override.yml
+.docker/data/
+
+# System Files
+.DS_Store
+Thumbs.db
