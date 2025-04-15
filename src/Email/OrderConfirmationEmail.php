@@ -10,7 +10,7 @@ class OrderConfirmationEmail
     public function create(Order $order): Email
     {
         $email = new Email();
-        $email->from('orders@example.com')
+        $email->from('orders@sandbox.smtp.mailtrap.io')
             ->to($order->getCustomerEmail())
             ->subject('Thank you for your order!')
             ->html($this->getHtmlContent($order))

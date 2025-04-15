@@ -3,11 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Event\OrderCreatedEvent;
 use App\Message\ProcessOrderMessage;
 use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +16,6 @@ class OrderController extends AbstractController
 {
     public function __construct(
         private readonly OrderRepository $orderRepository,
-        private readonly EventDispatcherInterface $eventDispatcher,
         private readonly MessageBusInterface $messageBus
     ) {
     }
@@ -48,12 +45,6 @@ class OrderController extends AbstractController
             $order->setAmount($data['amount']);
 
             $this->orderRepository->save($order, true);
-
-            // Dispatch event
-            $this->eventDispatcher->dispatch(
-                new OrderCreatedEvent($order),
-                OrderCreatedEvent::NAME
-            );
 
             // Send message to queue
             $this->messageBus->dispatch(
