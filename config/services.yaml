@@ -20,5 +20,14 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # Email services configuration
+    App\Email\OrderConfirmationEmail:
+        autowire: true
+
+    App\Service\OrderMailer:
+        autowire: true
+        arguments:
+            $logger: '@monolog.logger.mailer'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

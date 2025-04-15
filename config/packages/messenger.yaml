@@ -4,18 +4,22 @@ framework:
         failure_transport: failed
 
         transports:
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                options:
-                    use_notify: true
-                    check_delayed_interval: 60000
                 retry_strategy:
                     max_retries: 3
                     multiplier: 2
-            failed: 'doctrine://default?queue_name=failed'
+                    delay: 1000
+                    max_delay: 60000
+            failed:
+                dsn: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
 
         routing:
             # Route your messages to the transports
-            App\Message\ProcessOrderMessage: async 
+            App\Message\ProcessOrderMessage: async
+
+        buses:
+            messenger.bus.default:
+                middleware:
+                    - doctrine_transaction 
